@@ -2,7 +2,7 @@
 /* CSS Document */
 
 :root {
-  font-size: 14px;
+  font-size: 10px;
 }
 div,
 li,
@@ -157,12 +157,6 @@ button {
   text-align: center;
 }
 
-.slide:nth-child(even) {
-}
-
-.slide:nth-child(odd) {
-}
-
 .slide p,
 .slide textarea {
   font-size: 1.2rem;
@@ -274,6 +268,7 @@ body.three-d div.slides {
   top: -10px;
   left: -15px;
   content: "";
+  box-sizing: padding-box;
   -webkit-box-sizing: padding-box;
   background: -webkit-linear-gradient(
     135deg,
@@ -484,6 +479,7 @@ dl.inline dd {
   padding: 3px 8px;
 }
 ul.columns {
+  column-count: 4;
   -webkit-column-count: 4;
   margin: 40px -40px 0;
 }
@@ -500,8 +496,9 @@ ul {
   text-align: center;
 }
 .columns2 {
+  columns: 2 1rem;
   -webkit-columns: 2 1rem;
-
+  column-rule: 1px solid #bdd9d5;
   -webkit-column-rule: 1px solid #bdd9d5;
 }
 
@@ -728,6 +725,9 @@ button {
   box-sizing: border-box;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, cursive, serif;
 }
+
+/* Tom L (09-26-2021): why would you ever target the same element with the same rules */
+/* This exact same code appears at abour line 120 */
 .content td {
   border: 1px solid black;
 }
@@ -874,9 +874,11 @@ div.example {
   border: none;
   padding: 5px 10px;
   letter-spacing: 1px;
-  font-size: 1rem;
+  font-size: 2rem;
   box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3), 2px 2px 5px rgba(0, 0, 0, 0.7);
   border: 3px solid #eee;
+
+  cursor: pointer;
 }
 #next {
   left: auto;

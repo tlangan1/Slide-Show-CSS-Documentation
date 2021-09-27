@@ -427,7 +427,8 @@
 
     handleKeys: function (e) {
       // disable keys for these elements
-      if (/^(input|textarea|pre|object)$/i.test(e.target.nodeName)) return;
+      if (/^(input|textarea|pre|object|style)$/i.test(e.target.nodeName))
+        return;
 
       switch (e.keyCode) {
         case 37: // left arrow
@@ -435,7 +436,7 @@
           this.prev();
           break;
         case 39: // right arrow
-        case 32: // space
+        // case 32: // space
         case 34: // clicker right
           this.next();
           break;
