@@ -172,22 +172,40 @@ style {
             </ul>
           </section>
         </div>
-        <div class="slide normal">
+        <div class="slide normal attribute-selectors">
           <header>
             <h1>Attribute selectors: let element = E and attribute = A</h1>
           </header>
           <section class="content">
             <ul>
               <li>
+                <pre>
+    <style contenteditable="true">
+    style {
+        display: block;
+    }
+    .attribute-selectors li[class='the-target-attribute'] {
+        color: red;
+    }
+    </style>
+                    </pre>
+              </li>
+              <li>
                 Simple attribute: For example, E[A] will target all E elements
                 containing A attributes.
               </li>
-              <li>
-                Attribute value: For exampler, E[A=”val”] will target all E
-                elements containing A attributes that have the value “val”. In
-                elements where the attribute value is case sensitive then the
-                CSS selector is case sensitive otherwise not. This is denoted by
-                the “=”.
+              <li class="the-target-attribute">
+                <p>
+                  Attribute value: For exampler, E[A=”val”] will target all E
+                  elements containing A attributes that have the value “val”. In
+                  elements where the attribute value is case sensitive then the
+                  CSS selector is case sensitive otherwise not. This is denoted
+                  by the “=”.
+                </p>
+                <p>
+                  In this example this li has a class attribute with a value of
+                  'the-target-attribute'
+                </p>
               </li>
               <li>
                 Note that the syntax “*=”, starts with, “$=” ends with and “*=”
