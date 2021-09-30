@@ -14,6 +14,12 @@
     <link rel="stylesheet" href="css/print-tom.css" media="print" />
     <link rel="stylesheet" href="css/print.css" media="print" />
 
+    <style>
+      style {
+        display: block;
+      }
+    </style>
+
     <script>
       var x = /^(input|textarea|pre|object|style)$/i.test("frog");
     </script>
@@ -53,18 +59,17 @@
           <section class="content">
             <ul>
               <li>
-                Placing the style element in the head as follows alows you to
-                edit CSS in the browser right on the page you are using. You
-                don’t have to open the browser tools to do so.
+                Placing a style element containing the following CSS alows you
+                to edit that CSS directly in the browser. You don’t have to open
+                the browser tools to do so. In the case of this web page I put
+                this in a style element in the head so that it applied to all
+                the other style elements
                 <pre>
-                  <code>
-            &lt;style contenteditable="true"&gt;
-                head,
-                style {
-                    display: block;
-                }
-            &lt;/style&gt;
-                  </code>
+&lt;style contenteditable="true"&gt;
+    style {
+        display: block;
+    }
+&lt;/style&gt;
                 </pre>
               </li>
               <li>
@@ -131,19 +136,14 @@
             <h1>Basic Selectors, relational selectors</h1>
           </header>
           <section class="content">
-            <ul>
-              <li>
-                <pre>
+            <pre>
 <style contenteditable="true">
-style {
-    display: block;
-}
 .basic-selectors ul li {
     color: red;
 }
 </style>
-                </pre>
-              </li>
+            </pre>
+            <ul>
               <li>
                 The three most common selectors are targeting by id, the hash #
                 sign, targeting by class, the “.” and targeting by element name,
@@ -177,19 +177,14 @@ style {
             <h1>Attribute selectors: let element = E and attribute = A</h1>
           </header>
           <section class="content">
+            <pre>
+<style contenteditable="true">
+.attribute-selectors li[class='the-target-attribute'] {
+    color: red;
+}
+</style>
+            </pre>
             <ul>
-              <li>
-                <pre>
-    <style contenteditable="true">
-    style {
-        display: block;
-    }
-    .attribute-selectors li[class='the-target-attribute'] {
-        color: red;
-    }
-    </style>
-                    </pre>
-              </li>
               <li>
                 Simple attribute: For example, E[A] will target all E elements
                 containing A attributes.
@@ -210,6 +205,62 @@ style {
               <li>
                 Note that the syntax “*=”, starts with, “$=” ends with and “*=”
                 matches or contains are identical syntax to regular expressions.
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div class="slide normal UI-pseudo-classes-1">
+          <header>
+            <h1>UI pseudo-classes #1</h1>
+          </header>
+          <section class="content">
+            <pre>
+<style contenteditable="true">
+.UI-pseudo-classes-1 input[type='checkbox']:disabled {
+    outline: red solid 4px;
+}
+.UI-pseudo-classes-1 input[type='checkbox']:checked {
+    outline: cyan solid 4px;
+}
+.UI-pseudo-classes-1 input[type='checkbox']:enabled, input[type='checkbox']:enabled ~ label {
+    cursor: pointer;
+}
+</style>
+            </pre>
+            <ul>
+              <li>
+                <p>One example of state is :enabled, :disabled and :checked</p>
+                <p>
+                  <input type="checkbox" disabled="disabled" />
+                  <label>You can't check this because it is disabled: </label>
+                </p>
+                <p>
+                  <input type="checkbox" id="checkbox-enabled" />
+                  <label for="checkbox-enabled">
+                    You can check this enabled checkbox to see what happens
+                  </label>
+                </p>
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div class="slide normal UI-pseudo-classes-2">
+          <header>
+            <h1>UI pseudo-classes #2</h1>
+          </header>
+          <section class="content">
+            <pre>
+<style contenteditable="true">
+</style>
+              </pre>
+            <ul>
+              <li>
+                Another example of state would be those states which apply to
+                HTML5 webforms such as :valid, :invalid, :required, :optional,
+                :in-range, :out-of-range, :read-only, :read-write and :default.
+                Note that the in-range and out-of-range only apply to input
+                type=’number’ elements for which the min and/or the max
+                attributes have been defined.
               </li>
             </ul>
           </section>
