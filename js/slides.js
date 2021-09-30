@@ -378,11 +378,11 @@
       }
 
       if (delta > 0) {
-        this.prev();
+        // this.prev();
         return;
       }
       if (delta < 0) {
-        this.next();
+        // this.next();
         return;
       }
     },

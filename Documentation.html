@@ -18,6 +18,10 @@
       style {
         display: block;
       }
+
+      .slide {
+        overflow: scroll;
+      }
     </style>
 
     <script>
@@ -251,6 +255,15 @@
           <section class="content">
             <pre>
 <style contenteditable="true">
+    .UI-pseudo-classes-2 input:invalid {
+        outline: red solid 4px;
+    }
+    .UI-pseudo-classes-2 input:out-of-range {
+        outline: pink solid 4px;
+    }
+    .UI-pseudo-classes-2 a:hover {
+        font-size: 2em;
+    }
 </style>
               </pre>
             <ul>
@@ -261,8 +274,80 @@
                 Note that the in-range and out-of-range only apply to input
                 type=’number’ elements for which the min and/or the max
                 attributes have been defined.
+                <p>
+                  <label for="number-1"
+                    >You must enter a number between 1 and 5:
+                  </label>
+                  <input
+                    type="number"
+                    name="number-1"
+                    id="number-1"
+                    required
+                    min="1"
+                    max="5"
+                    value="frog"
+                  />
+                </p>
+                <p>
+                  Now since a number is required the absence of a number is
+                  targeted by the :invalid pseudo selector. If you enter a
+                  number outside the range the :out-of-range pseudo selector
+                  does the targeting.
+                </p>
+              </li>
+              <li>
+                Other pseudo-classes include :lang, :target, :link, :visited,
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web/CSS/:hover"
+                  >:hover</a
+                >, :active, :focus. Hover over ":hover" for an example.
               </li>
             </ul>
+          </section>
+        </div>
+        <div class="slide normal UI-pseudo-classes-3">
+          <header>
+            <h1>UI pseudo-classes #3</h1>
+          </header>
+          <section class="content">
+            <pre>
+<style contenteditable="true">
+    .UI-pseudo-classes-3 p:target {
+    background-color: gold;
+    }
+
+    
+    .UI-pseudo-classes-3 p:target::before {/* Add a pseudo-element inside the target element */
+    content: "►";
+    color: limegreen;
+    }
+
+    /* Style italic elements within the target element */
+    .UI-pseudo-classes-3 p:target i {
+    color: red;
+    }
+</style>
+                </pre>
+            <h3>Table of Contents</h3>
+            <ol>
+              <li><a href="#p1">Jump to the first paragraph!</a></li>
+              <li><a href="#p2">Jump to the second paragraph!</a></li>
+              <li>
+                <a href="#nowhere"
+                  >This link goes nowhere, because the target doesn't exist.</a
+                >
+              </li>
+            </ol>
+
+            <h3>My Fun Article</h3>
+            <p id="p1">
+              You can target <i>this paragraph</i> using a URL fragment. Click
+              on the link above to try out!
+            </p>
+            <p id="p2">
+              This is <i>another paragraph</i>, also accessible from the links
+              above. Isn't that delightful?
+            </p>
           </section>
         </div>
       </div>
