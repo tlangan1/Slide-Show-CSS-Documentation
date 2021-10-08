@@ -25,7 +25,7 @@
     </style>
 
     <script>
-      var x = /^(input|textarea|pre|object|style)$/i.test("frog");
+      var x = /^(input|textarea|pre|object|style)$/i.test("snake");
     </script>
   </head>
   <body>
@@ -186,6 +186,10 @@
 .attribute-selectors li[class='the-target-attribute'] {
     color: red;
 }
+
+.attribute-selectors li[class^=c][role*=ol] {
+    border: solid;
+}
 </style>
             </pre>
             <ul>
@@ -207,8 +211,11 @@
                 </p>
               </li>
               <li>
-                Note that the syntax “*=”, starts with, “$=” ends with and “*=”
+                Note that the syntax “^=”, starts with, “$=” ends with and “*=”
                 matches or contains are identical syntax to regular expressions.
+              </li>
+              <li class="class" role="role">
+                Note that multiple attributes work like li[class^=c][role*=ol].
               </li>
             </ul>
           </section>
@@ -285,7 +292,6 @@
                     required
                     min="1"
                     max="5"
-                    value="frog"
                   />
                 </p>
                 <p>
@@ -339,16 +345,358 @@
               </li>
             </ol>
 
-            <h3>My Fun Article</h3>
             <p id="p1">
-              You can target <i>this paragraph</i> using a URL fragment. Click
-              on the link above to try out!
+              <i>This paragraph</i> is targeted because it's id is the href of
+              the anchor above. Click on the link above to try out!
             </p>
             <p id="p2">
-              This is <i>another paragraph</i>, also accessible from the links
-              above. Isn't that delightful?
+              <i>This paragraph</i> is targeted by the second link above.
+            </p>
+            <p>
+              Hence, the ":target" pseudo class target's the element to which
+              the last anchor that was clicked is pointing.
             </p>
           </section>
+        </div>
+        <div class="slide normal UI-pseudo-classes-4">
+          <header>
+            <h1>UI pseudo-classes #4</h1>
+          </header>
+          <section class="content">
+            <pre>
+                <style>
+              .UI-pseudo-classes-4 style:first-of-type {
+                display: none;
+              }
+              .UI-pseudo-classes-4 style:last-of-type {
+                padding: 5px 20px;
+                font-size: 1.25em;
+                white-space: pre;
+                font-family: monospace;
+                background-color: #eee;
+              }
+
+              .UI-pseudo-classes-4 .block {
+                width: 300px;
+                min-height: 180px;
+                position: relative;
+                margin: 0px auto;
+              }
+
+              .UI-pseudo-classes-4 .tab {
+                display: inline;
+              }
+              .UI-pseudo-classes-4 a {
+                text-decoration: none;
+                color: black;
+                float: left;
+                padding: 5px 10px;
+                border: 1px solid #ccc;
+                border-bottom: none;
+                margin-right: 10px;
+              }
+              .UI-pseudo-classes-4 div:not(:target) > a {
+                background-color: #eee;
+              }
+              .UI-pseudo-classes-4 div:target > a {
+                background-color: white;
+              }
+              .UI-pseudo-classes-4 .tab > div {
+                background: white;
+                z-index: -2;
+                left: 0;
+                top: 30px;
+                bottom: 0;
+                right: 0;
+                padding: 20px;
+                border: 1px solid #ccc;
+              }
+              .UI-pseudo-classes-4 .tab:not(:target) > div {
+                position: absolute;
+              }
+              .UI-pseudo-classes-4 .tab:target > div {
+                position: absolute;
+                z-index: -1;
+              }
+            </style>
+<style contenteditable="true">
+.UI-pseudo-classes-4 .tab:not(:target) > a {
+    border-bottom: 0;
+    background-color: #eee;
+}
+.UI-pseudo-classes-4 .tab:target > a {
+    background-color: white;
+}
+.UI-pseudo-classes-4 .tab:not(:target) > div {
+    z-index: -2;
+}
+.UI-pseudo-classes-4 .tab:target > div {
+    z-index: -1;
+}
+</style>
+                </pre>
+            <div class="block">
+              <div class="tab" id="tab1">
+                <a href="#tab1">Tab 1</a>
+                <div>
+                  Bacon ipsum dolor sit amet flank shank filet mignon
+                  prosciutto, frankfurter pork shankle tail short ribs pork
+                  belly short loin sirloin.
+                </div>
+              </div>
+              <div class="tab" id="tab2">
+                <a href="#tab2">Tab 2</a>
+                <div>
+                  Beef chuck cow beef ribs kielbasa, venison hamburger ribeye
+                  biltong t-bone prosciutto strip steak boudin turducken flank.
+                </div>
+              </div>
+              <div class="tab" id="tab3">
+                <a href="#tab3">Tab 3</a>
+                <div>
+                  Jerky swine meatloaf, venison spare ribs boudin hamburger
+                  leberkase short ribs ball tip shoulder.
+                </div>
+              </div>
+            </div>
+            <p>
+              Note the use of the :not() pseudo class. It targets anything that
+              is not in the parenthesis. Also, there is JavaScript initializing
+              the ":target" state of the tab example.
+            </p>
+            <script>
+              addEventListener("load", function (event) {
+                document.querySelector("#tab1 > a").click();
+              });
+            </script>
+          </section>
+        </div>
+        <div class="slide normal structural-UI-pseudo-classes-1">
+          <header>
+            <h1>Structural UI pseudo-classes #1</h1>
+          </header>
+          <pre>
+<style contenteditable="true">
+.structural-UI-pseudo-classes-1 p:nth-last-child(2) {
+    color: blue;
+}
+.structural-UI-pseudo-classes-1 li:first-of-type {
+    color: red;
+}
+</style>
+            </pre>
+          <section class="content">
+            <ul>
+              <li>
+                <p>
+                  Structural UI pseudo-classes target elements on the page based
+                  on their relationship to other elements in the DOM.
+                  Specifically with respect to their parent. a. Some examples
+                  are :nth-child(), :nth-last-child(), :nth-of-type(),
+                  :nth-last-of-type(), :first-child, :last-child,
+                  :first-of-type, :last-of-type, :only-child, :only-of-type.
+                </p>
+                <p>This is the first item in a list in a list</p>
+                <p>This is the second item in a list in a list</p>
+              </li>
+              <li>
+                The structural UI pseudo-class, :root, simply refers to the root
+                element of the given document type. Hence, for the html document
+                type it targets the html element.
+              </li>
+              <li>
+                The structural UI pseudo-class, :empty, will target any element
+                which can contain children that does not. The img element, for
+                example, will never be targeted as it cannot contain children.
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div class="slide normal pseudo-elements-general">
+          <header>
+            <h1>Pseudo-elements General Understaing</h1>
+          </header>
+          <section class="content">
+            <ul>
+              <li>
+                The pseudo-elements "::before" and "::after" are used to
+                generate content and although you may visually see that
+                generated content it is not part of the DOM; however, you still
+                can style it. The only required attribute in pseudo-selectors is
+                “content”, even if it is empty.
+              </li>
+              <li>
+                The way to think of the placement of these pseudo elements is
+                before and after the contents of the element they are targeting,
+                not before and after the element itself. For example, the pseudo
+                elements p::before and p::after should be thought of as existing
+                within the p as illustrated below:
+                <pre>                
+&ltp&gt
+    &lt::before&gtbefore content&lt/::before&gt
+    <span style='font-weight: bold'>paragraph contents</span>
+    &lt::after&gtafter content&lt/::after&gt
+&lt/p&gt
+              </pre>
+              </li>
+              <li>
+                Self-closing elements, such as img, cannot be targeted by these
+                pseudo-elements. This makes sense since the pseudo-elements are
+                created as children to the targeted element but a self-closing
+                element cannot have children.
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div class="slide normal pseudo-elements-1">
+          <header>
+            <h1>Pseudo-elements #1</h1>
+          </header>
+          <section class="content">
+            <pre>
+<style contenteditable="true">
+.pseudo-elements-1 p:first-of-type::first-letter  {
+    float: left;    font-size: 4em;    line-height: .8;
+    color: var(--header-color);    padding-right: 4px;
+}
+.pseudo-elements-1 p:nth-of-type(3)::selection {
+    color: white;    background-color: var(--header-color);
+}
+
+.pseudo-elements-1 p span::before, .pseudo-elements-1 p span::after {
+    font-size: 2em;
+    color: var(--header-color);
+    line-height: 0;
+    vertical-align: middle;
+}
+.pseudo-elements-1 p span::before {content: "\275D";}
+.pseudo-elements-1 p span::after {content: "\275E";}
+</style>
+            </pre>
+            <p>
+              The t in "The" is known as a <span>drop-cap</span> and was
+              targeted using the pseudo element ::first-letter. Also, notice
+              that I surrounded the term drop-cap with
+              <span>generated content</span>.
+            </p>
+            <p>
+              Note that the n in "Note" in this paragraph was not targeted. This
+              is an example of the use of pseudo-class first-of-type.
+            </p>
+            <p>
+              Also, select some of the text in this paragraphs to see the
+              ::selection pseudo element in action. Then select some text in one
+              of the other paragraphs for comparison.
+            </p>
+          </section>
+        </div>
+        <div class="slide normal pseudo-elements-2">
+          <header>
+            <h1>Pseudo-elements #2</h1>
+          </header>
+          <section class="content">
+            <pre>
+<style contenteditable="true">
+.pseudo-elements-2 a[href^="http"]:hover {
+    position: relative;
+}
+
+.pseudo-elements-2 a[href^="http"]:hover::after {
+    content: attr(href);
+    position: absolute;
+    top: var(--common-font-factor);
+    left: 0;
+    background-color: black;
+    color: white;
+    padding: 3px 5px;
+    line-height: 1;
+    border: solid;
+}
+</style>
+            </pre>
+            <p>
+              These <a href="#exercises">exercises</a> are an anchor on this
+              page whereas <a href="http://www.google.com">Google</a> is an
+              anchor that hyperlinks through http. The pseudo element is invoked
+              up on the hover speudo class on http links.
+              <a href="https://www.stringeramfunds.com">Magna</a> is another
+              such hyperlink. Note the use of the css property,
+              var(--common-font-factor), to ensure that the pseudo element is
+              shifted downward by exactly the size of the font.
+            </p>
+            <div style="height: 1000px"></div>
+            <p id="exercises">These are the exercises</p>
+          </section>
+        </div>
+        <div class="slide normal pseudo-elements-3">
+          <header>
+            <h1>Pseudo-elements #3</h1>
+          </header>
+          <section class="content">
+            <pre>
+<style contenteditable="true">
+.pseudo-elements-3 p.quote {
+    border-radius: 10px;    position: relative;
+    padding: 20px;    background-color: red;    color: white;
+}
+
+.pseudo-elements-3 p.quote::after {
+    content: "";
+    position: absolute;    width: 0;    height: 0;
+    border: 20px solid transparent;
+    border-top-color: red;    bottom: -39px;    left: 20px;
+}
+
+.pseudo-elements-3 p.experiment::before {
+    content: "";
+    width: 0;    height: 0;    position: relative;
+    border: 20px solid transparent;
+    border-left-color: red;    display: inline-block;    bottom: -10px;
+}
+</style>
+            </pre>
+            <p class="quote">
+              This is a paragraph that features a triangle using the width equal
+              0 height equal 0 trick only one border css trick.
+            </p>
+            <p class="experiment">
+              This is another one using the same trick just a different border.
+            </p>
+          </section>
+        </div>
+        <div class="slide normal pseudo-elements-4">
+          <header>
+            <h1>Pseudo-elements #4</h1>
+          </header>
+          <section class="content">
+            <pre>
+<style contenteditable="true">
+.pseudo-elements-4 .thought {
+    border-radius: 50%;    border: 5px solid blue;
+    background-color: white;    position: relative;
+    padding: 40px;    display: inline-block;
+}
+.pseudo-elements-4 .thought::before,
+.pseudo-elements-4 .thought::after {
+    content: "";
+    border: 5px solid blue;
+    border-radius: 50%;    position: absolute;
+    left: 20%;    bottom: -30px;    width: 40px;    height: 40px;
+    background-color: #fff;
+}
+.pseudo-elements-4 .thought::after {
+    height: 20px;    width: 20px;    bottom: -50px;    left: 12%;
+}
+</style>
+            </pre>
+            <p class="thought">This is a thought bubble</p>
+          </section>
+        </div>
+        <div class="slide normal specificity">
+          <p>Pick up here with specificity</p>
+        </div>
+        <div class="slide normal media-queries">
+          <p>Pick up here with media queries</p>
         </div>
       </div>
     </div>
