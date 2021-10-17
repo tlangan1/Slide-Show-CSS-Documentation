@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/print.css" media="print" />
 
     <style>
-      style {
+      style[contenteditable="true"] {
         display: block;
       }
 
@@ -496,18 +496,23 @@
                   :nth-last-of-type(), :first-child, :last-child,
                   :first-of-type, :last-of-type, :only-child, :only-of-type.
                 </p>
-                <p>This is the first item in a list in a list</p>
-                <p>This is the second item in a list in a list</p>
+                <p>This is the second paragraph in this li</p>
+                <p>This is the third paragraph in this li</p>
               </li>
               <li>
-                The structural UI pseudo-class, :root, simply refers to the root
-                element of the given document type. Hence, for the html document
-                type it targets the html element.
+                <p>
+                  The structural UI pseudo-class, :root, simply refers to the
+                  root element of the given document type. Hence, for the html
+                  document type it targets the html element.
+                </p>
               </li>
               <li>
-                The structural UI pseudo-class, :empty, will target any element
-                which can contain children that does not. The img element, for
-                example, will never be targeted as it cannot contain children.
+                <p>
+                  The structural UI pseudo-class, :empty, will target any
+                  element which can contain children that does not. The img
+                  element, for example, will never be targeted as it cannot
+                  contain children.
+                </p>
               </li>
             </ul>
           </section>
@@ -693,10 +698,176 @@
           </section>
         </div>
         <div class="slide normal specificity">
-          <p>Pick up here with specificity</p>
+          <header>
+            <h1>Specificity</h1>
+          </header>
+          <section class="content">
+            <pre>
+<style contenteditable="true">
+.specificity p a:hover {
+    position: relative;
+}
+.specificity p a:hover::after {
+    content: attr(title);
+    position: absolute;
+    top: var(--common-font-factor);
+    left: 0;
+    background-color: black;
+    color: white;
+    padding: 3px 5px;
+    line-height: 1;
+    border: solid;
+}
+</style>
+            </pre>
+            <p>
+              The specificity of a selector is measured using a three number
+              expression in the form “number of elements”-“number of class &
+              pseudo classes”-“number of element names and pseudo elements”;
+              however, another way to calculate it is with the following
+              algorithm that can be found in this
+              <a
+                href="D:\Computer Science\CSS\Documentation\CSS_Cheat_Sheet_Inheritance_Cascade_Specificity.pdf"
+                title="http://srjcstaff.santarosa.edu/~tfleming/htmlb/CSS_Cheat_Sheet_Inheritance_Cascade_Specificity.pdf"
+                >document</a
+              >. This document also reviews the concepts of inheritance and the
+              cascade.
+            </p>
+          </section>
         </div>
-        <div class="slide normal media-queries">
-          <p>Pick up here with media queries</p>
+        <div class="slide normal media-queries-1">
+          <header>
+            <h1>Media Queries #1</h1>
+          </header>
+          <section class="content">
+            <pre>
+<style contenteditable="true">
+@media print {
+    .media-queries-1 p.print-example {
+        color: red;
+    }
+}
+</style>
+            </pre>
+            <p class="print-example">
+              Print this slide and see what happens by examining the print
+              preview. In this exanple we used a media query to target the
+              printed color of a paragraph making it red. The other way we
+              targeted this content was by linking a style sheet with type =
+              "media". This css resulted in
+              <span>this part of the paragraph being underlined</span>. See the
+              link element at the top of the page and css/print-tom.css for the
+              actual code.
+            </p>
+            <p>
+              One common use case for a media query might be to prevent some
+              sections of a web page from being included in the printed version
+              of the page. The example below would prevent any content of class
+              'header' or 'sidebar' from being included.
+            </p>
+            <pre>
+                @media print {
+                    .header {display none;}
+                    .sidebar {display: none;}
+                  }
+              </pre
+            >
+          </section>
+        </div>
+        <div class="slide normal media-queries-2">
+          <header>
+            <h1>Media Queries #2</h1>
+          </header>
+          <section class="content">
+            <ul>
+              <li>
+                The typical use of media queries is for responsive design and
+                the most commonly used comparators or min-width, max-width.
+              </li>
+              <li>
+                @orientation is a comparator that could be helpful on a
+                smartphone, for example, to change the layout depending on which
+                way the user has the phone tipped.
+              </li>
+              <li>
+                Comparators can be combined operators like “and” or with the
+                comma “,” which means “or”. The “not” and “only” operators are
+                also used but I think the “only” is there just to prevent older
+                browsers from misinterpreting media queries.
+              </li>
+              <li>
+                CSS @supports go into your CSS like @media queries do. @supports
+                allows developers to check style support in a number of
+                different ways so that they can more easily provide the correct
+                styling in a given environment. Consider the following example
+                that checks to see whether an environment supports “flex” before
+                styling all divs as flex divs.
+                <pre>
+                    @supports (display: grid) {
+                        div {display: grid;}
+                    {
+                </pre>
+                The JavaScript counterpart to @supports is CSS.supports.
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div class="slide normal colors">
+          <header>
+            <h1>Colors</h1>
+          </header>
+          <section class="content">
+            <style>
+              .two-column {
+                column-count: 2;
+              }
+            </style>
+            <ul>
+              <li>Color formats in css for white are:</li>
+              <ul class="two-column">
+                <li>White</li>
+                <li>#fff</li>
+                <li>#FFFFFF</li>
+                <li>rgb(255, 255, 255)</li>
+                <li>rgb(100%, 100%, 100%)</li>
+                <li>rgba(255, 255, 255, 1)</li>
+                <li>rgba(100%, 100%, 100%, 1)</li>
+                <li>hsl(0, 100%, 100%)</li>
+                <li>hsla(0, 100%, 100%, 1)</li>
+              </ul>
+              <li>
+                hsl stands for hue, saturation, lightness and the a in hsla
+                stands for alpha channel.
+              </li>
+              <ul>
+                <li>
+                  Hue: is the actual and is designated by an angle on the color
+                  circle which can be represented using various units.
+                </li>
+                <li>
+                  Saturation: This is how strongly the given hue is represented
+                  with 100% being pure color and 0% being grey.
+                </li>
+                <li>
+                  Lightness: This is how light the given hue is represented with
+                  100% being white, 50% being normal and 0% being black.
+                </li>
+              </ul>
+              <li>
+                The keyword “transparent” is actually a shortcut for rgba(0, 0,
+                0, 0). Hence. It is transparent black.
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div class="slide normal fonts-shadows-and-text-effects">
+          <header>
+            <h1>Fonts Shadows and Text Effects</h1>
+          </header>
+          <section class="content">
+            <style contenteditable="true"></style>
+            <p>Pick up here.</p>
+          </section>
         </div>
       </div>
     </div>
