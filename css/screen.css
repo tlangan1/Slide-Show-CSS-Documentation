@@ -120,7 +120,7 @@ body {
 }
 
 .content {
-  font-size: 1.4rem;
+  font-size: var(--common-font-factor);
 }
 
 .content input,
@@ -325,7 +325,7 @@ header {
   text-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px;
   left: 30px;
   top: 25px;
-  font-size: 1.4rem;
+  font-size: var(--common-font-factor);
 }
 
 h1 {
@@ -708,9 +708,6 @@ body {
 .slide.intro hgroup {
   margin-top: 200px;
 }
-.content {
-  font-size: var(--common-font-factor);
-}
 .content input,
 button {
   font-size: var(--common-font-factor);
@@ -758,16 +755,6 @@ button {
   display: block;
   margin-left: -2400px;
 }
-.slide.past {
-  visibility: visible;
-  display: block;
-  margin-left: -1400px;
-}
-.slide.current {
-  visibility: visible;
-  display: block;
-  margin-left: -450px;
-}
 .slide.future {
   visibility: visible;
   display: block;
@@ -780,14 +767,6 @@ button {
 
 /* Content */
 
-header {
-  font-weight: normal;
-  letter-spacing: -0.05rem;
-  text-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px;
-  left: 30px;
-  top: 25px;
-  font-size: var(--common-font-factor);
-}
 h1 {
   font-size: 2.5rem;
   margin-bottom: 0;

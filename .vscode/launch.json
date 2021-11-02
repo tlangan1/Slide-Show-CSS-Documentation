@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Chrome",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "file": "${workspaceFolder}/Documentation.html"
+    },
+    {
+      "name": "Firefox",
+      "type": "firefox",
+      "request": "launch",
+      "file": "${workspaceFolder}/Documentation.html"
+    },
+    {
+      "name": "Edge",
+      "type": "pwa-msedge",
+      "request": "launch",
+      "file": "${workspaceFolder}/Documentation.html"
+    }
+  ]
+}

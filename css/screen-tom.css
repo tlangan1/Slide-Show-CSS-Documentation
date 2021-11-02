@@ -2,7 +2,20 @@
   color: black;
 }
 
-#slides div:first-of-type p,
 header h1 {
   font-size: 3.5rem;
+}
+
+style[contenteditable="true"] {
+  display: block;
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.slide.current {
+  overflow: scroll;
+}
+
+.slide pre:not(.documentation) {
+  line-height: 0;
 }

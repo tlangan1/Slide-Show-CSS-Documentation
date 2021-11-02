@@ -13,20 +13,6 @@
     <link rel="stylesheet" href="css/screen.css" media="projection, screen" />
     <link rel="stylesheet" href="css/print-tom.css" media="print" />
     <link rel="stylesheet" href="css/print.css" media="print" />
-
-    <style>
-      style[contenteditable="true"] {
-        display: block;
-      }
-
-      .slide {
-        overflow: scroll;
-      }
-    </style>
-
-    <script>
-      var x = /^(input|textarea|pre|object|style)$/i.test("snake");
-    </script>
   </head>
   <body>
     <header>
@@ -36,6 +22,30 @@
           <li class="button done" id="next">Next</li>
         </ul>
       </nav>
+      <div
+        id="borders-and-backgrounds-3-fixed"
+        class="borders-and-backgrounds-3"
+      >
+        <div class="example fixed">
+          <p>The background is fixed relative to the viewport.</p>
+          <p>
+            Mauris sem mi, ultrices et hendrerit vitae, hendrerit non tortor.
+            Aliquam erat volutpat. Morbi eget leo lorem, ut placerat nisl.
+            Aenean auctor volutpat condimentum. Morbi adipiscing leo et felis
+            faucibus suscipit nec at odio. Pellentesque convallis turpis non
+            sapien facilisis quis volutpat magna venenatis. Etiam nisi metus,
+            imperdiet vitae lobortis sit amet, pharetra ut leo. Lorem ipsum
+            dolor sit amet, consectetur adipiscing elit. Praesent magna tortor,
+            tincidunt ac tristique sit amet, condimentum ut erat. Mauris sem mi,
+            ultrices et hendrerit vitae, hendrerit non tortor. Aliquam erat
+            volutpat. Morbi eget leo lorem, ut placerat nisl. Aenean auctor
+            volutpat condimentum. Morbi adipiscing leo et felis faucibus
+            suscipit nec at odio. Pellentesque convallis turpis non sapien
+            facilisis quis volutpat magna venenatis. Etiam nisi metus, imperdiet
+            vitae lobortis sit amet, pharetra ut leo.
+          </p>
+        </div>
+      </div>
     </header>
     <div id="info">
       <p class="light-background">
@@ -63,18 +73,23 @@
           <section class="content">
             <ul>
               <li>
-                Placing a style element containing the following CSS alows you
-                to edit that CSS directly in the browser. You don’t have to open
-                the browser tools to do so. In the case of this web page I put
-                this in a style element in the head so that it applied to all
-                the other style elements
-                <pre>
-&lt;style contenteditable="true"&gt;
-    style {
-        display: block;
-    }
-&lt;/style&gt;
+                Placing a style element with the contenteditable attribute set
+                to true in an html page as follows:
+                <pre class="documentation">
+&ltstyle contenteditable="true"&gt
+    ...
+&lt/style&gt
                 </pre>
+                in combination with the CSS rule that follows:
+                <pre class="documentation">
+style[contenteditable="true"] {
+    display: block;
+}
+                </pre>
+                provides a way to see and edit CSS directly in the browser. You
+                don’t have to open the browser tools to do so or change the code
+                in your IDE and refresh the page. This is the technique used
+                throughout this page.
               </li>
               <li>
                 Estelle alludes to a template known as html 5 boilerplate but
@@ -94,10 +109,6 @@
                 often the case that the parent of something positioned
                 absolutely is positioned:relative.
               </li>
-              <li>
-                The at rules of CSS like @media or @font-face are CSS statements
-                that instruct CSS how to behave.
-              </li>
             </ul>
           </section>
         </div>
@@ -107,6 +118,10 @@
           </header>
           <section class="content">
             <ul>
+              <li>
+                The at rules of CSS like @media or @font-face are CSS statements
+                that instruct CSS how to behave.
+              </li>
               <li>
                 &lt;script defer&gt; for inline javascript and &lt;script
                 src=’javascript file.js’ defer&gt; for including a JavaScript
@@ -368,13 +383,6 @@
               .UI-pseudo-classes-4 style:first-of-type {
                 display: none;
               }
-              .UI-pseudo-classes-4 style:last-of-type {
-                padding: 5px 20px;
-                font-size: 1.25em;
-                white-space: pre;
-                font-family: monospace;
-                background-color: #eee;
-              }
 
               .UI-pseudo-classes-4 .block {
                 width: 300px;
@@ -420,19 +428,19 @@
               }
             </style>
 <style contenteditable="true">
-.UI-pseudo-classes-4 .tab:not(:target) > a {
-    border-bottom: 0;
-    background-color: #eee;
-}
-.UI-pseudo-classes-4 .tab:target > a {
-    background-color: white;
-}
-.UI-pseudo-classes-4 .tab:not(:target) > div {
-    z-index: -2;
-}
-.UI-pseudo-classes-4 .tab:target > div {
-    z-index: -1;
-}
+    .UI-pseudo-classes-4 .tab:not(:target) > a {
+        border-bottom: 0;
+        background-color: #eee;
+    }
+    .UI-pseudo-classes-4 .tab:target > a {
+        background-color: white;
+    }
+    .UI-pseudo-classes-4 .tab:not(:target) > div {
+        z-index: -2;
+    }
+    .UI-pseudo-classes-4 .tab:target > div {
+        z-index: -1;
+    }
 </style>
                 </pre>
             <div class="block">
@@ -536,7 +544,7 @@
                 not before and after the element itself. For example, the pseudo
                 elements p::before and p::after should be thought of as existing
                 within the p as illustrated below:
-                <pre>                
+                <pre class="documentation">                
 &ltp&gt
     &lt::before&gtbefore content&lt/::before&gt
     <span style='font-weight: bold'>paragraph contents</span>
@@ -765,11 +773,11 @@
               of the page. The example below would prevent any content of class
               'header' or 'sidebar' from being included.
             </p>
-            <pre>
-                @media print {
-                    .header {display none;}
-                    .sidebar {display: none;}
-                  }
+            <pre class="documentation">
+@media print {
+    .header {display none;}
+    .sidebar {display: none;}
+}
               </pre
             >
           </section>
@@ -802,10 +810,10 @@
                 styling in a given environment. Consider the following example
                 that checks to see whether an environment supports “flex” before
                 styling all divs as flex divs.
-                <pre>
-                    @supports (display: grid) {
-                        div {display: grid;}
-                    {
+                <pre class="documentation">
+@supports (display: grid) {
+    div {display: grid;}
+{
                 </pre>
                 The JavaScript counterpart to @supports is CSS.supports.
               </li>
@@ -860,13 +868,420 @@
             </ul>
           </section>
         </div>
-        <div class="slide normal fonts-shadows-and-text-effects">
+        <div class="slide normal fonts-and-box-shadows">
           <header>
-            <h1>Fonts Shadows and Text Effects</h1>
+            <h1>Fonts and Box Shadows</h1>
           </header>
           <section class="content">
-            <style contenteditable="true"></style>
-            <p>Pick up here.</p>
+            <p>
+              @font-face defines the name of a font-family and the source files
+              that contain the characters as well as the font-weight, font-style
+              and charset. This is another example of a CSS at rule. See
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face"
+                >MDN</a
+              >
+              for detailed information.
+            </p>
+            <p>
+              The terms font and type face are often used interchangeably but,
+              strictly speaking, they are not the same thing. For example,
+              Helvetica is a typeface whereas Helvetica Regular 9 point is a
+              specific font.
+            </p>
+            <p>
+              See
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow"
+                >MDN</a
+              >
+              for the box-shadow specification. There are two interesting
+              features. If you use the keyword “inset” the shadow is placed
+              inside the border as if it is depressed in the page instead of the
+              default appearance of a drop shadow giving the appearance of
+              hovering over the page. The second feature is the spread radius.
+              This value indicates how much of the shadow is solid whereas the
+              blur-radius indicates the blurred portion of the shadow.
+            </p>
+          </section>
+        </div>
+        <div class="slide normal text-decorations-and-text-shadows">
+          <header>
+            <h1>Text Decorations & Text Shadows</h1>
+          </header>
+          <section class="content">
+            <pre>
+<style contenteditable="true">
+.text-decorations-and-text-shadows p span {
+    text-shadow: 2px 5px 1px rgba(0, 0, 0, .2)
+}
+.text-decorations-and-text-shadows .textshadow {
+    color: #c7573a;
+
+    text-shadow: 0 1px #cccccc, 0 2px #c9c9c9, 0 3px #bbbbbb, 0 4px #b9b9b9,
+        0 5px #aaaaaa, 0 6px 1px rgb(0 0 0 / 10%), 0 0 5px rgb(0 0 0 / 10%),
+        0 1px 3px rgb(0 0 0 / 30%), 0 3px 5px rgb(0 0 0 / 20%),
+        0 5px 10px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 20%),
+        0 20px 20px rgb(0 0 0 / 15%);
+    font-size: 30px;    font-weight: bold;
+    }
+
+.decoration {
+    text-decoration-line: underline;    text-decoration-style: wavy;
+}
+</style>
+            </pre>
+            <p>
+              The syntax for text shadow is “text-shadow: offset-x offset-y blur
+              radius color” and a decent set of text-shadow values are
+              “text-shadow: 2px 5px 1px rgba(0, 0, 0, .2)”. Notice the use of
+              the .2 for the alpha channel transparency in the black…that is the
+              key. It is applied
+              <span>to this content</span>.
+            </p>
+            <p>
+              In fact, multiple text shadows can be applied to the same text.
+              See <span class="textshadow">this content</span> as an example.
+              Also, notice the text-decoration
+              <span class="decoration">here</span> and how it is accomplished.
+              There are a ton of text decoration options.
+            </p>
+          </section>
+        </div>
+        <div class="slide normal borders-and-backgrounds-1">
+          <header>
+            <h1>Border and Backgrounds #1</h1>
+          </header>
+          <section class="content">
+            <pre>
+  <style contenteditable="true">
+.borders-and-backgrounds-1 div {
+    height: 5vw;    width: 30vw;
+    background-color: rgb(0%, 0%, 100%, 0.5);
+    border-color: rgb(100%, 0%, 0%, 0.5);
+    border-style: solid;    border-width: 10px;
+    padding: 10px;
+}
+.borders-and-backgrounds-1 div.background-image {
+    background-image: url(./images/sam-touch-icon-medium.bmp);
+}
+
+.repeat {
+    background-repeat: repeat;
+}
+</style>
+            </pre>
+            <ul>
+              <li>
+                The default box for the background color is the border-box. That
+                is, it occupies all the element's space INCLUDING THE BORDER.
+                <div></div>
+              </li>
+              <li>
+                The default box for background images is the padding box.That
+                is, it occupies all the element's space EXCLUDING THE BORDER.
+                <div class="background-image"></div>
+              </li>
+              <li>
+                However, is appears the default box for background images is the
+                border box when it is repeated.
+                <div class="background-image repeat"></div>
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div class="slide normal borders-and-backgrounds-2">
+          <header>
+            <h1>Border and Backgrounds #2: Background Repeat</h1>
+          </header>
+          <section class="content">
+            <pre>
+<style>
+.borders-and-backgrounds-2 * {
+    box-sizing: border-box;
+}
+
+.borders-and-backgrounds-2 div {
+    height: 50vh;
+    width: 33.3%;
+    border: solid;
+    background-image: url("./images/Transparent Speedometer Cropped.png"),
+    url(./images/puppy-small.jpg);
+    text-align: center;
+    float: left;
+}
+
+.borders-and-backgrounds-2 div.small {
+    height: 15vh;
+    width: 100%;
+}
+
+.borders-and-backgrounds-2 p.spacer {
+    margin-top: 2em;
+}
+</style>
+<style contenteditable="true">
+.borders-and-backgrounds-2 .repeat {
+    background-repeat: repeat;
+}
+
+.borders-and-backgrounds-2 .no-repeat {
+    background-repeat: no-repeat;
+}
+
+.borders-and-backgrounds-2 .repeat-x {
+    background-repeat: repeat-x;
+}
+
+.borders-and-backgrounds-2 .repeat-y {
+    background-repeat: repeat-y;
+}
+
+.borders-and-backgrounds-2 .space {
+    background-repeat: space;
+}
+
+.borders-and-backgrounds-2 .round {
+    background-repeat: round;
+}
+
+.borders-and-backgrounds-2 p {
+    color: white;
+}
+
+.borders-and-backgrounds-2 p:first-of-type {
+    color: black;
+}
+</style>
+              </pre>
+            <div class="repeat">
+              <p>In this div we use background-repeat: repeat</p>
+              <p>In this div we use background-repeat: repeat</p>
+            </div>
+            <div class="no-repeat">
+              <p>In this div we use background-repeat: no-repeat</p>
+              <p>In this div we use background-repeat: no-repeat</p>
+            </div>
+            <div class="repeat-x">
+              <p>In this div we use background-repeat: repeat-x</p>
+              <p>In this div we use background-repeat: repeat-x</p>
+            </div>
+            <div class="repeat-y">
+              <p>In this div we use background-repeat: repeat-y</p>
+              <p>In this div we use background-repeat: repeat-y</p>
+            </div>
+            <div class="space">
+              <p>In this div we use background-repeat: space</p>
+              <p>In this div we use background-repeat: space</p>
+            </div>
+            <div class="round">
+              <p>In this div we use background-repeat: round</p>
+              <p>In this div we use background-repeat: round</p>
+            </div>
+            <p class="spacer">
+              This is an example of round causing stretching and squishing
+            </p>
+            <div class="round small">
+              <p>In this div we use background-repeat: round</p>
+              <p>In this div we use background-repeat: round</p>
+            </div>
+          </section>
+        </div>
+        <div class="slide normal borders-and-backgrounds-3">
+          <header>
+            <h1>Border and Backgrounds #3: Background Attachment</h1>
+          </header>
+          <section class="content">
+            <pre>
+  <style>
+.borders-and-backgrounds-3 pre {
+    display: none;
+}
+
+.borders-and-backgrounds-3 h1 {
+    text-align: center;
+}
+
+.borders-and-backgrounds-3 div.row {
+    display: flex;
+}
+
+.borders-and-backgrounds-3 div.example {
+    width: 190px;
+    height: 200px;
+    border: solid;
+    overflow: scroll;
+    background-image: url("./images/puppy-small.jpg"), linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    margin: 20px;
+    background-repeat: no-repeat;
+}
+
+.borders-and-backgrounds-3 .fixed {
+    background-attachment: fixed;
+}
+
+#borders-and-backgrounds-3-fixed {
+    background-attachment: fixed;
+    display: none;
+    z-index: 1001;
+    position: absolute;
+    color: wheat;
+}
+
+.borders-and-backgrounds-3 .scroll {
+    background-attachment: scroll;
+}
+
+.borders-and-backgrounds-3 .local {
+    background-attachment: local;
+}
+
+.borders-and-backgrounds-3 .row p {
+    color: wheat;
+}
+</style>
+                </pre>
+            <p>
+              The background attachment css property set’s whether a background
+              image’s position is fixed within the viewport, or scrolls with its
+              containing block or not. To explore the “Fixed” example use the
+              button below.
+            </p>
+            <div class="row">
+              <div>
+                <h1>fixed</h1>
+                <div class="example fixed">
+                  <p>The background is fixed relative to the viewport.</p>
+                  <p>
+                    Mauris sem mi, ultrices et hendrerit vitae, hendrerit non
+                    tortor. Aliquam erat volutpat. Morbi eget leo lorem, ut
+                    placerat nisl. Aenean auctor volutpat condimentum. Morbi
+                    adipiscing leo et felis faucibus suscipit nec at odio.
+                    Pellentesque convallis turpis non sapien facilisis quis
+                    volutpat magna venenatis. Etiam nisi metus, imperdiet vitae
+                    lobortis sit amet, pharetra ut leo. Lorem ipsum dolor sit
+                    amet, consectetur adipiscing elit. Praesent magna tortor,
+                    tincidunt ac tristique sit amet, condimentum ut erat. Mauris
+                    sem mi, ultrices et hendrerit vitae, hendrerit non tortor.
+                    Aliquam erat volutpat. Morbi eget leo lorem, ut placerat
+                    nisl. Aenean auctor volutpat condimentum. Morbi adipiscing
+                    leo et felis faucibus suscipit nec at odio. Pellentesque
+                    convallis turpis non sapien facilisis quis volutpat magna
+                    venenatis. Etiam nisi metus, imperdiet vitae lobortis sit
+                    amet, pharetra ut leo.
+                  </p>
+                </div>
+              </div>
+              <div>
+                <h1>scroll</h1>
+                <div class="example scroll">
+                  <p>
+                    The background is fixed relative to the element itself and
+                    does not scroll with its contents
+                  </p>
+                  <p>
+                    Mauris sem mi, ultrices et hendrerit vitae, hendrerit non
+                    tortor. Aliquam erat volutpat. Morbi eget leo lorem, ut
+                    placerat nisl. Aenean auctor volutpat condimentum. Morbi
+                    adipiscing leo et felis faucibus suscipit nec at odio.
+                    Pellentesque convallis turpis non sapien facilisis quis
+                    volutpat magna venenatis. Etiam nisi metus, imperdiet vitae
+                    lobortis sit amet, pharetra ut leo. Lorem ipsum dolor sit
+                    amet, consectetur adipiscing elit. Praesent magna tortor,
+                    tincidunt ac tristique sit amet, condimentum ut erat. Mauris
+                    sem mi, ultrices et hendrerit vitae, hendrerit non tortor.
+                    Aliquam erat volutpat. Morbi eget leo lorem, ut placerat
+                    nisl. Aenean auctor volutpat condimentum. Morbi adipiscing
+                    leo et felis faucibus suscipit nec at odio. Pellentesque
+                    convallis turpis non sapien facilisis quis volutpat magna
+                    venenatis. Etiam nisi metus, imperdiet vitae lobortis sit
+                    amet, pharetra ut leo.
+                  </p>
+                </div>
+              </div>
+              <div>
+                <h1>local</h1>
+                <div class="example local">
+                  <p>
+                    The background does scroll with the contents if the element
+                    has a scrolling mechanism.
+                  </p>
+                  <p>
+                    Mauris sem mi, ultrices et hendrerit vitae, hendrerit non
+                    tortor. Aliquam erat volutpat. Morbi eget leo lorem, ut
+                    placerat nisl. Aenean auctor volutpat condimentum. Morbi
+                    adipiscing leo et felis faucibus suscipit nec at odio.
+                    Pellentesque convallis turpis non sapien facilisis quis
+                    volutpat magna venenatis. Etiam nisi metus, imperdiet vitae
+                    lobortis sit amet, pharetra ut leo. Lorem ipsum dolor sit
+                    amet, consectetur adipiscing elit. Praesent magna tortor,
+                    tincidunt ac tristique sit amet, condimentum ut erat. Mauris
+                    sem mi, ultrices et hendrerit vitae, hendrerit non tortor.
+                    Aliquam erat volutpat. Morbi eget leo lorem, ut placerat
+                    nisl. Aenean auctor volutpat condimentum. Morbi adipiscing
+                    leo et felis faucibus suscipit nec at odio. Pellentesque
+                    convallis turpis non sapien facilisis quis volutpat magna
+                    venenatis. Etiam nisi metus, imperdiet vitae lobortis sit
+                    amet, pharetra ut leo.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <button id="move-fixed-div">See puppy</button>
+            <p>
+              Note that there is a div at the top of the page in the header
+              element which is being used on this slide (in conjunction with the
+              button and the invoked javascript) to help demonstrate the 'fixed'
+              background-attachment placement.
+            </p>
+            <script>
+              var button = document.querySelector("#move-fixed-div");
+
+              function MoveFixedDiv(fixedButton) {
+                var location = [
+                  "See the puppy in the viewport",
+                  "See the lighter portion of the gradient in the viewport",
+                  "See neither",
+                ];
+                var currentPosition = 0;
+                var scrollLocation = 0;
+                fixedButton.innerHTML = location[currentPosition];
+                fixedDivInHeader = document.querySelector(
+                  "#borders-and-backgrounds-3-fixed"
+                );
+                var scrollingElement = document.querySelector(".fixed");
+
+                var ChangePosition = function () {
+                  currentPosition = ++currentPosition % 3;
+                  button.innerHTML = location[currentPosition];
+
+                  switch (currentPosition) {
+                    case 0:
+                      fixedDivInHeader.style.display = "none";
+                      break;
+                    case 1:
+                      fixedDivInHeader.style.display = "block";
+                      fixedDivInHeader.style.top = "-18px";
+                      fixedDivInHeader.style.left = "-18px";
+                      break;
+                    case 2:
+                      fixedDivInHeader.style.display = "block";
+                      fixedDivInHeader.style.right = "100px";
+                      fixedDivInHeader.style.left = null;
+
+                      /* The only reason this code is here is because the background-attachment */
+                      /* appearance is not updated when the 'fixed' div is moved from the left to */
+                      /* to the right for some reason. */
+                      scrollLocation = ++scrollLocation % 2;
+                      scrollingElement.scrollTo(0, scrollLocation * 20);
+                      break;
+                  }
+                };
+
+                return ChangePosition;
+              }
+              button.addEventListener("click", MoveFixedDiv(button));
+            </script>
           </section>
         </div>
       </div>
