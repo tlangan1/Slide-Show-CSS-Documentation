@@ -62,7 +62,7 @@
             <h1>Documentation of "CSS3 In-Depth by Estelle Weyl"</h1>
           </header>
           <section class="content">
-            <p>◈ Documentation approach used by Estelle Weyl</p>
+            <p>◈ An approach inspired by Estelle Weyl</p>
             <p>◈ Adopted and modified by Tom Langan 9-25-2021</p>
           </section>
         </div>
@@ -1000,91 +1000,45 @@ style[contenteditable="true"] {
 .borders-and-backgrounds-2 * {
     box-sizing: border-box;
 }
-
 .borders-and-backgrounds-2 div {
     height: 50vh;
-    width: 33.3%;
-    border: solid;
+    border:solid;
     background-image: url("./images/Transparent Speedometer Cropped.png"),
     url(./images/puppy-small.jpg);
-    text-align: center;
-    float: left;
-}
-
-.borders-and-backgrounds-2 div.small {
-    height: 15vh;
-    width: 100%;
-}
-
-.borders-and-backgrounds-2 p.spacer {
-    margin-top: 2em;
+    background-repeat: repeat;
+    margin-top: 2rem;
 }
 </style>
-<style contenteditable="true">
-.borders-and-backgrounds-2 .repeat {
-    background-repeat: repeat;
-}
-
-.borders-and-backgrounds-2 .no-repeat {
-    background-repeat: no-repeat;
-}
-
-.borders-and-backgrounds-2 .repeat-x {
-    background-repeat: repeat-x;
-}
-
-.borders-and-backgrounds-2 .repeat-y {
-    background-repeat: repeat-y;
-}
-
-.borders-and-backgrounds-2 .space {
-    background-repeat: space;
-}
-
-.borders-and-backgrounds-2 .round {
-    background-repeat: round;
-}
-
-.borders-and-backgrounds-2 p {
-    color: white;
-}
-
-.borders-and-backgrounds-2 p:first-of-type {
-    color: black;
-}
+<style contenteditable="true"> .borders-and-backgrounds-2 div {background-repeat: repeat;}
 </style>
               </pre>
-            <div class="repeat">
-              <p>In this div we use background-repeat: repeat</p>
-              <p>In this div we use background-repeat: repeat</p>
-            </div>
-            <div class="no-repeat">
-              <p>In this div we use background-repeat: no-repeat</p>
-              <p>In this div we use background-repeat: no-repeat</p>
-            </div>
-            <div class="repeat-x">
-              <p>In this div we use background-repeat: repeat-x</p>
-              <p>In this div we use background-repeat: repeat-x</p>
-            </div>
-            <div class="repeat-y">
-              <p>In this div we use background-repeat: repeat-y</p>
-              <p>In this div we use background-repeat: repeat-y</p>
-            </div>
-            <div class="space">
-              <p>In this div we use background-repeat: space</p>
-              <p>In this div we use background-repeat: space</p>
-            </div>
-            <div class="round">
-              <p>In this div we use background-repeat: round</p>
-              <p>In this div we use background-repeat: round</p>
-            </div>
-            <p class="spacer">
-              This is an example of round causing stretching and squishing
-            </p>
-            <div class="round small">
-              <p>In this div we use background-repeat: round</p>
-              <p>In this div we use background-repeat: round</p>
-            </div>
+            <label for="selectBackgroundRepeat"
+              >Select Background Repeat Value:
+            </label>
+            <select
+              id="selectBackgroundRepeat"
+              onchange="changeBackgroundRepeat(this)"
+            >
+              <option value="repeat">repeat</option>
+              <option value="no-repeat">no-repeat</option>
+              <option value="repeat-x">repeat-x</option>
+              <option value="repeat-y">repeat-y</option>
+              <option value="space">space</option>
+              <option value="round">round</option>
+            </select>
+            <div></div>
+            <script>
+              function changeBackgroundRepeat(element) {
+                var style = document.querySelector(
+                  ".borders-and-backgrounds-2 style[contenteditable='true']"
+                );
+
+                style.innerHTML =
+                  ".borders-and-backgrounds-2 div {background-repeat:" +
+                  element.value +
+                  ";}";
+              }
+            </script>
           </section>
         </div>
         <div class="slide normal borders-and-backgrounds-3">
@@ -1281,6 +1235,94 @@ style[contenteditable="true"] {
                 return ChangePosition;
               }
               button.addEventListener("click", MoveFixedDiv(button));
+            </script>
+          </section>
+        </div>
+        <div class="slide normal borders-and-backgrounds-4">
+          <header>
+            <h1>Border and Backgrounds #4: Background Position</h1>
+          </header>
+          <section class="content">
+            <pre>
+<style  >
+.borders-and-backgrounds-4 * {
+    box-sizing: border-box;
+}
+.borders-and-backgrounds-4 div {
+    height: 25vh;
+    border:solid;
+    background-image: url("./images/puppy-small.jpg");
+    background-repeat: no-repeat;
+    margin-top: 2rem;
+}
+</style>
+<style contenteditable="true"> .borders-and-backgrounds-4 div {background-position: 50% 50%;}
+</style>
+                  </pre>
+            <p>
+              This property is straight forward except when using percentages
+              for left, right, top and bottom. When using percentages the point
+              within the image that is used as the target to make the move is
+              actually the point within the image at the same percentages. For
+              example, if you positioned a background image right 100% and
+              bottom 100% the point in the background image to which this
+              calculation is being made would be the bottom right corner. If, on
+              the other hand you position the background image right 50% bottom
+              50% then the center point of the image is actually the point
+              within the image that is being positioned.
+            </p>
+            <p>
+              <label for="units">Select the measuring units to be used:</label>
+              <select id="units" onchange="changePosition()">
+                <option value="%">Percentage</option>
+                <option value="px">Pixels</option>
+                <option value="em">Ems</option>
+                <option value="rem">Rems</option>
+                <option value="vh">Vhs</option>
+                <option value="vw">Vws</option>
+              </select>
+            </p>
+            <p>
+              <label for="xPercentage">Change the horizontal location.</label>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                name=""
+                id="xPercentage"
+                onchange="changePosition()"
+              />
+            </p>
+            <label for="xPercentage">Change the vertical location.</label>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              name=""
+              id="yPercentage"
+              onchange="changePosition()"
+            />
+            <div></div>
+            <p style="font-size: 1em">This is font-size 1 em.</p>
+            <p style="font-size: 1rem">This is font-size 1 rem.</p>
+            <script>
+              function changePosition() {
+                var element = document.querySelector(
+                  '.borders-and-backgrounds-4 style[contenteditable="true"]'
+                );
+
+                var xPercentage = document.getElementById("xPercentage").value;
+                var yPercentage = document.getElementById("yPercentage").value;
+                var units = document.getElementById("units").value;
+                element.innerHTML =
+                  ".borders-and-backgrounds-4 div {background-position: " +
+                  xPercentage +
+                  units +
+                  " " +
+                  yPercentage +
+                  units +
+                  ";}";
+              }
             </script>
           </section>
         </div>
