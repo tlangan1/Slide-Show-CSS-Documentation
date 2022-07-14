@@ -473,6 +473,9 @@ style[contenteditable="true"] {
               the ":target" state of the tab example.
             </p>
             <script>
+              // This adds an onload event listener to this web page.
+              // The onload event is called after the page is fully loaded.
+              // The only line of code in this event calls the click event of the first tabs anchor.
               addEventListener("load", function (event) {
                 document.querySelector("#tab1 > a").click();
               });
@@ -1322,6 +1325,160 @@ style[contenteditable="true"] {
                   yPercentage +
                   units +
                   ";}";
+              }
+            </script>
+          </section>
+        </div>
+        <div class="slide normal borders-and-backgrounds-5">
+          <header>
+            <h1>
+              Border and Backgrounds #5: Background Clip & Background Origin
+            </h1>
+          </header>
+          <section class="content">
+            <style>
+              :root {
+                --background-repeat-value: no-repeat;
+              }
+              .borders-and-backgrounds-5 div.row {
+                display: flex;
+              }
+              .borders-and-backgrounds-5 div.box {
+                height: 33vh;
+                width: 33vw;
+                border: dashed 5px hsla(240, 100%, 36%, 0.3);
+                padding: 20px;
+                margin: 10px;
+              }
+
+              .borders-and-backgrounds-5 div.box.background-color {
+                background-color: hsla(0, 45%, 24%, 0.3);
+              }
+
+              .borders-and-backgrounds-5 div.box.background-image {
+                background-image: url("./images/smaller hand.jpg");
+                background-repeat: var(--background-repeat-value);
+              }
+
+              .borders-and-backgrounds-5 .clip-border-box {
+                background-clip: border-box;
+              }
+
+              .borders-and-backgrounds-5 .clip-padding-box {
+                background-clip: padding-box;
+              }
+
+              .borders-and-backgrounds-5 .clip-content-box {
+                background-clip: content-box;
+              }
+
+              .borders-and-backgrounds-5 .origin-border-box {
+                background-origin: border-box;
+              }
+
+              .borders-and-backgrounds-5 .origin-padding-box {
+                background-origin: padding-box;
+              }
+
+              .borders-and-backgrounds-5 .origin-content-box {
+                background-origin: content-box;
+              }
+
+              .borders-and-backgrounds-5 div.box p:nth-of-type(2) {
+                color: white;
+              }
+            </style>
+            <p>
+              This row demonstrates the background-clip property. This CSS
+              property sets whether an element's
+              <strong>background color</strong> extends underneath its border
+              box (the default), padding box, or content box and the values are,
+              appropriately, border-box, padding-box and content-box.
+            </p>
+            <div class="row">
+              <div class="box background-color clip-border-box">
+                <p>This is background-clip:border-box, the default.</p>
+                <p>This is background-clip:border-box, the default.</p>
+              </div>
+              <div class="box background-color clip-padding-box">
+                <p>This is background-clip:padding-box.</p>
+                <p>This is background-clip:padding-box.</p>
+              </div>
+              <div class="box background-color clip-content-box">
+                <p>This is background-clip:content-box.</p>
+                <p>This is background-clip:content-box.</p>
+              </div>
+            </div>
+            <p>
+              This row demonstrates the background-origin property. This CSS
+              property determines where the top left corner of an element's
+              <strong>background image</strong> is placed. The options are
+              border box, padding box (the default), or content box.A "not
+              entirely intuitive" behavior occurs the background-origin property
+              is set along with the background-repeat property Select whether
+              the background repeat property is used and, if so, what it is set
+              to with this drop-down box.
+              <select class="alterBackgroundRepeat">
+                <option value="no-repeat">Set to no-repeat</option>
+                <option value="repeat">Set to repeat</option>
+                <option value="repeat-x">Set to repeat-x</option>
+                <option value="repeat-y">Set to repeat-y</option>
+                <option value="space">Set to space</option>
+                <option value="round">Set to round</option>
+                <option value="remove">No Background Repeat</option>
+              </select>
+            </p>
+            <div class="row">
+              <div class="box background-image origin-border-box">
+                <p>This is background-origin:border-box.</p>
+                <p>This is background-origin:border-box.</p>
+              </div>
+              <div class="box background-image origin-padding-box">
+                <p>This is background-origin:padding-box, the default.</p>
+                <p>This is background-origin:padding-box, the default.</p>
+              </div>
+              <div class="box background-image origin-content-box">
+                <p>This is background-origin:content-box.</p>
+                <p>This is background-origin:content-box.</p>
+              </div>
+            </div>
+            <script>
+              // getProperty usage: cssGlobalProperties.getProperty("--some-property")
+              // setProperty usage: cssGlobalProperties.setProperty("--some-property", "2")
+              var cssGlobalProperties = CSSProperties(
+                document.querySelector(":root")
+              );
+
+              document
+                .querySelector(".alterBackgroundRepeat")
+                .addEventListener("change", alterBackgroundRepeat);
+
+              /*------------------------------------------------*/
+              /* Helper functions for the executable code above */
+              /*------------------------------------------------*/
+
+              function CSSProperties(element) {
+                function getProperty(propertyName) {
+                  //   var rs = getComputedStyle(element);
+                  return getComputedStyle(element).getPropertyValue(
+                    propertyName
+                  );
+                }
+                function setProperty(propertyName, propertyValue) {
+                  element.style.setProperty(propertyName, propertyValue);
+                }
+
+                return {
+                  getProperty: getProperty,
+                  setProperty: setProperty,
+                };
+              }
+
+              function alterBackgroundRepeat() {
+                cssGlobalProperties.setProperty(
+                  "--background-repeat-value",
+                  document.querySelector(".alterBackgroundRepeat").value
+                );
               }
             </script>
           </section>
