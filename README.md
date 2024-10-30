@@ -1,7 +1,2 @@
-# Slide-Show-CSS-Documentation
-
-CSS Documentation in a Slide Show Wrapper
-
-- If you open Documentation.html using F5 in VSCode you will need to click on the page to get the arrow-navigation to work.
-
-- If you open Documentation.html with live server, for example, arrow-navigation should just work.
+<h1 align="center">CSS Documentation in a Slide Show</h1>
+This project documents some aspects of CSS but, more importantly, provides a way to edit that CSS in the browser. This allows the user to experiment with the CSS concepts documented.
